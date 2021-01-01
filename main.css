@@ -1,0 +1,48 @@
+:root {
+    --pixel-size: 10;
+}
+
+
+body {
+    margin: 0;
+    background-color: orange;
+}
+
+#player {
+    width: calc(32px * var(--pixel-size));
+    height: calc(32px * var(--pixel-size));
+    overflow: hidden;
+    position: relative;
+}
+
+#playerImg {
+    width: calc(128px * var(--pixel-size));
+    height: calc(128px * var(--pixel-size));
+    animation: moveSpriteSheet 1s steps(4) infinite;
+    position: absolute;
+}
+
+.pixelArt {
+    image-rendering: pixelated;
+}
+
+.faceUp {
+    top: calc(-32px * var(--pixel-size));
+}
+
+.faceRight {
+    top: calc(-64px * var(--pixel-size));
+}
+
+.faceLeft {
+    top: calc(-96px * var(--pixel-size));
+}
+
+@keyframes moveSpriteSheet {
+    from {
+        transform: translate3d(0px,0,0);
+    }
+    to {
+        transform: translate3d(-100%,0,0);
+    }
+}
