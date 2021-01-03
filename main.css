@@ -1,24 +1,62 @@
 :root {
-    --pixel-size: 10;
+    --pixelSize: 2px;
+    --gridCell: calc(var(--pixelSize) * 16);
 }
 
+@media( min-width: 700px ) {
+    :root {
+        --pixelSize: 3px;
+    }
+}
+
+@media( min-width: 900px ) {
+    :root {
+        --pixelSize: 4px;
+    }
+}
+
+@media( min-width: 1280px) {
+    :root {
+        --pixelSize: 5px;
+    } 
+}
 
 body {
     margin: 0;
     background-color: orange;
+    display: flex;
 }
 
-#player {
-    width: calc(32px * var(--pixel-size));
-    height: calc(32px * var(--pixel-size));
+
+#camera {
+    width: 90vw;
+    height: 90vh;
     overflow: hidden;
+    background: #61ddf7;
+    position: relative;
+    left: 5vw;
+    right: 5vw;
+    top: 5vh;
+}
+
+#map {
+    background-image: url(./assets/baseMap.png);
+    background-size: 100%;
+    width: calc(10 * var(--gridCell));
+    height: calc(16 * var(--gridCell));
     position: relative;
 }
 
+#player {
+    width: calc(32 * var(--pixelSize));
+    height: calc(32 * var(--pixelSize));
+    overflow: hidden;
+    position: absolute;
+}
+
 #playerImg {
-    width: calc(128px * var(--pixel-size));
-    height: calc(128px * var(--pixel-size));
-    animation: moveSpriteSheet 1s steps(4) infinite;
+    width: calc(128 * var(--pixelSize));
+    height: calc(128 * var(--pixelSize));
     position: absolute;
 }
 
@@ -26,16 +64,24 @@ body {
     image-rendering: pixelated;
 }
 
-.faceUp {
-    top: calc(-32px * var(--pixel-size));
+[walking="true"] {
+    animation: moveSpriteSheet 500ms steps(4) infinite;
 }
 
-.faceRight {
-    top: calc(-64px * var(--pixel-size));
+[facing="down"] {
+    top: calc(0 * var(--pixelSize));
 }
 
-.faceLeft {
-    top: calc(-96px * var(--pixel-size));
+[facing="up"] {
+    top: calc(-32 * var(--pixelSize));
+}
+
+[facing="right"] {
+    top: calc(-64 * var(--pixelSize));
+}
+
+[facing="left"] {
+    top: calc(-96 * var(--pixelSize));
 }
 
 @keyframes moveSpriteSheet {
